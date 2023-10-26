@@ -1,57 +1,50 @@
 import './App.css';
-import { createBrowserRouter , RouterProvider , Outlet} from 'react-router-dom';
-import Header from './components/Header/header'; 
-import Footer from './components/Footer/footer';
-import Home from './pages/Home/home';
-import Product from './pages/Product/product';
-import Products from './pages/Products/products';
+import { createBrowserRouter , RouterProvider ,Outlet} from 'react-router-dom';
+import Home from "./Pages/Home/Home";
+import Products from "./Pages/Products/Products";
+import Product from "./Pages/Product/Product";
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
-const Layout = () => {
+function Layout(){
 
   return (
-    <div className='app'>
-      <Header/>
-      <Outlet />
-      <Footer/>
-    </div>
+    <>
+    <Header />
+    <Outlet/>
+    <Footer />
+    </>
   )
 }
 
 const router = createBrowserRouter([
   {
-    path : "/",
-    element : <Layout/>,
-    children : [ 
+    path : '/',
+    element : <Layout />,
+    children : [
       {
-      path : "/",
-      element : <Home/>
+        path : "/",
+        element: <Home />
       },
       {
         path : "/Products/:id",
-        element : <Products/>
+        element: <Products />
       },
       {
         path : "/Product/:id",
-        element :<Product/>
+        element: <Product />
       }
     ]
   }
-]
-)
+])
 
 
-function App() { 
- 
+function App() {
   return (
     <div className="App">
-     <RouterProvider router={router} />
+      <RouterProvider  router = {router}/>
     </div>
   );
 }
 
-
 export default App;
-
-
-
-
