@@ -1,31 +1,46 @@
-import WestOutlinedIcon from '@mui/icons-material/WestOutlined';
-import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
+import slider1 from "../../assets/slider1.png";
+import slider2 from "../../assets/slider2.png";
+import slider3 from "../../assets/slider3.png";
+import EastOutlinedIcon from "@mui/icons-material/EastOutlined";
+import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
+import "./Slider.scss";
+import {useState} from 'react'; 
 
-const data = [
-    "https://images.pexels.com/photos/1549200/pexels-photo-1549200.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/949670/pexels-photo-949670.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/837140/pexels-photo-837140.jpeg?auto=compress&cs=tinysrgb&w=1600",
-  ];
+export default function Slider(){
+
+    const [currentSlide,setCurrentSlide] = useState(0)
+    
+    const [data , setData] = useState([slider1,slider2,slider3 ])
+
+      
+    const prevSlide = () => {
+        console.log("recahed prev");
+        setCurrentSlide( (currentSlide) => currentSlide === 0 ? 2 : currentSlide- 1)
+        console.log("currentslide value",currentSlide);
+    }
+
+    const nextSlide = () => {
+        console.log("recahed next");
+        setCurrentSlide( (currentSlide) => currentSlide === 2 ? 0 : currentSlide + 1 )
+        console.log("currentslide value",currentSlide);
+    }
 
 
- export default function Slider(){
-
-    return (
-      <div className="slider">
-        <div className="container">
-            <img src={data[0]} alt="" />
-            <img src={data[1]} alt="" />
-            <img src={data[2]} alt="" />
+    return(
+        <div className = "hero-section">
+        <div className="Imageslider" >
+          <img src={data[currentSlide]} alt=""/>
         </div>
-        <div className="icons">
+        <div className="iconsContainer">
+        <div className="navButtons">
             <div className="icon">
-                <WestOutlinedIcon />   
+            <WestOutlinedIcon onClick={prevSlide}/>
             </div>
-            <div className="icon">
-                <EastOutlinedIcon />
-         </div>
+           <div  className="icon">
+           <EastOutlinedIcon onClick={nextSlide}/>
+           </div>
         </div>
-      </div>
+        </div>
+    </div>
     )
 }
-
